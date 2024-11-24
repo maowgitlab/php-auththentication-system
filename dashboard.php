@@ -17,9 +17,24 @@ if (!isset($_SESSION['username'])) {
 <body>
     <div class="flex items-center justify-center h-screen">
         <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-            <h2 class="text-2xl font-bold mb-4">Selamat datang, <?php echo $_SESSION['username']; ?></h2>
-            <a href="logout.php" class="bg-blue-500 text-white p-2 rounded">Logout</a>
+            <h2 class="text-2xl font-bold mb-4">Selamat datang, <?= $_SESSION['username']; ?></h2>
+            <a href="javascript:void(0);" class="bg-blue-500 text-white p-2 rounded" onclick="logout()">Logout</a>
         </div>
     </div>
+    <script>
+        function logout() {
+            Swal.fire({
+                title: 'Apakah Anda yakin ingin keluar?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, keluar',
+                cancelButtonText: 'Tidak, kembali'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'logout.php';
+                }
+            });
+        }
+    </script>
 </body>
 </html>

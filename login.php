@@ -6,16 +6,17 @@ if (isset($_SESSION['username'])) {
     exit();
 }
 
+$loginStatus = null;
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Misalnya verifikasi username dan password dengan hardcode
     if ($username == 'admin' && $password == 'password') {
         $_SESSION['username'] = $username;
-        echo "<script>Swal.fire('Berhasil', 'Login berhasil!', 'success').then(() => { window.location.href = 'dashboard.php'; });</script>";
+        $loginStatus = 'success';
     } else {
-        echo "<script>Swal.fire('Gagal', 'Username atau password salah!', 'error');</script>";
+        $loginStatus = 'error';
     }
 }
 ?>
@@ -40,5 +41,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
         </div>
     </div>
+    <?php
+    if ($loginStatus === 'success') {
+        echo "<script>Swal.fire('Berhasil', 'Login berhasil!', 'success').then(() => { window.location.href = 'dashboard.php'; });</script>";
+    } elseif ($loginStatus === 'error') {
+        echo "<script>Swal.fire('Gagal', 'Username atau password salah!', 'error');</script>";
+    }
+    ?>
 </body>
 </html>
