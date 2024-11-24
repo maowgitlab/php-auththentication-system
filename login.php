@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($username == 'admin' && $password == 'password') {
         $_SESSION['username'] = $username;
         header("Location: dashboard.php");
-        exit();
+        exit;
     } else {
         $error = "Username atau password salah";
     }
