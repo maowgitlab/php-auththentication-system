@@ -8,7 +8,7 @@ if (isset($_SESSION['username'])) {
 
 $loginStatus = null;
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST["login"])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="text" id="username" name="username" class="w-full p-2 border border-gray-300 rounded mb-4" required>
                 <label for="password" class="block mb-2">Password:</label>
                 <input type="password" id="password" name="password" class="w-full p-2 border border-gray-300 rounded mb-4" required>
-                <input type="submit" value="Login" class="w-full bg-blue-500 text-white p-2 rounded">
+                <button type="submit" name="login" class="w-full bg-blue-500 text-white p-2 rounded">Login</button>
             </form>
         </div>
     </div>
